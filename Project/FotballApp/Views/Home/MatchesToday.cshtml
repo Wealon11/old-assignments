@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FotballApp.Models.ModelDataa>
+
+@{
+    ViewData["Title"] = "MatchesToday";
+}
+
+
+<h2 style="text-align: center">Football matches @ViewData["date"]</h2><br/>
+
+<div style="text-align: right">
+    <button style="height: 45px; width: 117px">
+        <a class="nav-link text-dark" asp-area=""
+           asp-controller="Home" asp-action="MatchesToday" asp-route-date='@ViewData["lastday"]'>
+            <b>Last day</b>
+        </a>
+    </button>
+    <button style="height: 45px; width: 117px">
+        <a class="nav-link text-dark" asp-area=""
+           asp-controller="Home" asp-action="MatchesToday" asp-route-date='@ViewData["nextDay"]'>
+            <b>Next day</b>
+        </a>
+    </button>
+</div>
+    @foreach (var item in Model)
+    {
+      
+        <table class="table">
+            <td>
+                <div class="row">
+
+                    <div class="col x13" style="text-align:center;" onclick="location.href = '@(Url.Action("Team", "Home", new { teamId = item.HomeTeam_Id }))'">
+                        <img src="@Html.DisplayFor(modelItem => item.HomeTeam_Logo)" width="50" height="50"><br />
+                        <strong><font size="4">@Html.DisplayFor(modelItem => item.HomeTeam_Name)</font></strong>
+                        
+</div>
+                    <div class="col x16" style="text-align: center;">
+                        <strong><font size="5">@Html.DisplayFor(modelItem => item.GoalsHomeTeam)-@Html.DisplayFor(modelItem => item.GoalsAwayTeam)</font></strong><br/>
+                        @Html.DisplayFor(modelItem => item.Elapsed)<br />
+                        @Html.DisplayFor(modelItem => item.StatusShort)<br />
+                    </div>
+
+
+                    <div class="col x13" style="text-align:center;" onclick="location.href = '@(Url.Action("Team", "Home", new { teamId = item.AwayTeam_Id }))'">
+                        <img src="@Html.DisplayFor(modelItem => item.AwayTeam_Logo)" width="50" height="50"><br />
+                        <strong><font size="4">@Html.DisplayFor(modelItem => item.AwayTeam_Name)</font></strong>
+
+                    </div>
+
+                </div>
+            </td>
+        </table>
+
+    }

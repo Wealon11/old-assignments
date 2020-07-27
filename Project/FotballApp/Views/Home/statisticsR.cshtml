@@ -1,0 +1,292 @@
+﻿@using System.Text.RegularExpressions
+@model IEnumerable<FotballApp.Models.StatisticsModel>
+
+@{
+    ViewData["Title"] = "statisticsR";
+}
+
+
+<table class="table" style="border-top-color: black">
+  
+
+    <td>
+        <div class="row">
+            <div class="col x13" style="text-align: center;">
+                <img src="@ViewData["HomeTeamLogo"]" width="75" height="75"><br />
+                <strong>@ViewData["HomeTeam"]</strong><br />
+
+            </div>
+            <div class="col x16" style="text-align: center;">
+                <strong> <font size="7">@ViewData["ScoreFulltime"]</font></strong><br />           
+                <strong>@ViewData["Status"]</strong><br />
+
+            </div>
+            <div class="col x13" style="text-align: center;">
+                <img src="@ViewData["AwayTeamLogo"]" width="75" height="75"><br />
+                <strong>@ViewData["AwayTeam"]</strong><br />
+
+            </div>
+
+        </div>
+    </td>
+</table>
+
+
+
+
+<div class="statBarGroup">
+
+    <div class="statBar statBar--home">
+        <div class="statBarBg ">
+            <div class="statBarLine" style="width: 46%; background-color: #595959;"></div>
+        </div>
+    </div>
+
+
+
+    <div class="statBar statBar--away">
+        <div class="statBarBg ">
+            <div class="statBarLine" style="width: 54%; background-color: #CA0000;"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@{
+
+    int numm(string a, string b)
+    {
+        int aa;
+        int bb;
+
+
+        if (!(a == null || a == string.Empty) && !(b == null || b == string.Empty))
+        {
+
+            if (a.Contains("%") && b.Contains("%"))
+            {
+              string newa= Regex.Replace(a, "[^\\w\\._]", "");
+              string newb = Regex.Replace(a, "[^\\w\\._]", "");
+
+                int newaa = Convert.ToInt32(newa);
+                int newbb = Convert.ToInt32(newb);
+
+                return newaa + newbb;
+
+            }
+
+            else
+            {
+                aa = Convert.ToInt32(a);
+                bb = Convert.ToInt32(b);
+
+                return aa + bb;
+            }
+
+        }
+
+        else
+        {
+            return 0;
+        }
+
+
+    }}
+
+
+@{
+
+    int num(string a)
+    {
+
+        if (a.Contains("%"))
+        {
+            string newa = Regex.Replace(a, "[^\\w\\._]", "");
+
+
+            int newaa = Convert.ToInt32(newa);
+
+
+            return newaa;
+
+        }
+
+        return 0;
+    }
+    
+
+
+    int nullempty(string a)
+    {
+        int aa;
+
+        if (a == null || a == string.Empty)
+        {
+            
+
+            return 0;
+
+        }
+
+        aa = Convert.ToInt32(a);
+        return aa;
+    }
+
+
+
+}
+
+
+
+    @foreach (var item in Model)
+{
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.ShotsOnGoalHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.ShotsOnGoalAway)</div>
+        <div style="margin: 0 auto; width: 100px;">Shots on Goal</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.ShotsOnGoalHome, item.ShotsOnGoalAway) value=@Html.DisplayFor(modelItem => item.ShotsOnGoalHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.ShotsOnGoalHome, item.ShotsOnGoalAway) value=@Html.DisplayFor(modelItem => item.ShotsOnGoalAway)></progress>
+    </div>
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.ShotsOffGoalHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.ShotsOffGoalAway)</div>
+        <div style="margin: 0 auto; width: 100px;">Shots off Goal</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.ShotsOffGoalHome, item.ShotsOffGoalAway) value=@Html.DisplayFor(modelItem => item.ShotsOffGoalHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.ShotsOffGoalHome, item.ShotsOffGoalAway) value=@Html.DisplayFor(modelItem => item.ShotsOffGoalAway)></progress>
+    </div>
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.TotalShotsHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.TotalShotsAway)</div>
+        <div style="margin: 0 auto; width: 100px;">Total Shots</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.TotalShotsHome, item.TotalShotsAway) value=@Html.DisplayFor(modelItem => item.TotalShotsHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.TotalShotsHome, item.TotalShotsAway) value=@Html.DisplayFor(modelItem => item.TotalShotsAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.BlockedShotsHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.BlockedShotsAway)</div>
+        <div style="margin: 0 auto; width: 100px;">Blocked Shots</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.BlockedShotsHome, item.BlockedShotsAway) value=@Html.DisplayFor(modelItem => item.BlockedShotsHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.BlockedShotsHome, item.BlockedShotsAway) value=@Html.DisplayFor(modelItem => item.BlockedShotsAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.ShotsInsideBoxHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.ShotsInsideBoxAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Shots inside box</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.ShotsInsideBoxHome, item.ShotsInsideBoxAway) value=@Html.DisplayFor(modelItem => item.ShotsInsideBoxHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.ShotsInsideBoxHome, item.ShotsInsideBoxAway) value=@Html.DisplayFor(modelItem => item.ShotsInsideBoxAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.ShotsoutsideBoxHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.ShotsoutsideBoxAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Shots outsidebox</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.ShotsoutsideBoxHome, item.ShotsoutsideBoxAway) value=@Html.DisplayFor(modelItem => item.ShotsoutsideBoxHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.ShotsoutsideBoxHome, item.ShotsoutsideBoxAway) value=@Html.DisplayFor(modelItem => item.ShotsoutsideBoxAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.FoulsHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.FoulsAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Shots Fouls</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.FoulsHome, item.FoulsAway) value=@Html.DisplayFor(modelItem => item.FoulsHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.FoulsHome, item.FoulsAway) value=@Html.DisplayFor(modelItem => item.FoulsAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.CornerKicksHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.CornerKicksAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Corner Kicks</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.CornerKicksHome, item.CornerKicksAway) value=@Html.DisplayFor(modelItem => item.CornerKicksHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.CornerKicksHome, item.CornerKicksAway) value=@Html.DisplayFor(modelItem => item.CornerKicksAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.OffsidesHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.OffsidesAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Offsides</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.OffsidesHome, item.OffsidesAway) value=@Html.DisplayFor(modelItem => item.OffsidesHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.OffsidesHome, item.OffsidesAway) value=@Html.DisplayFor(modelItem => item.OffsidesAway)></progress>
+    </div>
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.BallPossessionHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.BallPossessionAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Ball PossessionAway</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.BallPossessionHome, item.BallPossessionAway) value=@num(item.BallPossessionHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.BallPossessionHome, item.BallPossessionAway) value=@num(item.BallPossessionAway)></progress>
+    </div>
+
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.YellowCardsHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.YellowCardsAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Yellow Cards</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.YellowCardsHome, item.YellowCardsAway) value=@Html.DisplayFor(modelItem => item.YellowCardsHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.YellowCardsHome, item.YellowCardsAway) value=@Html.DisplayFor(modelItem => item.YellowCardsAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@nullempty(item.RedCardsHome)</div>
+        <div style="float: right">@nullempty(item.RedCardsHome)</div>
+        <div style="margin: 0 auto; width: 150px;">Red Cards</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.RedCardsHome, item.RedCardsAway) value=@nullempty(item.RedCardsHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.RedCardsHome, item.RedCardsAway) value=@nullempty(item.RedCardsAway)></progress>
+    </div>
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.GoalkeeperSavesHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.GoalkeeperSavesAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Goalkeeper Saves</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.GoalkeeperSavesHome, item.GoalkeeperSavesAway) value=@Html.DisplayFor(modelItem => item.GoalkeeperSavesHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.GoalkeeperSavesHome, item.GoalkeeperSavesAway) value=@Html.DisplayFor(modelItem => item.GoalkeeperSavesAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.TotalpassesHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.TotalpassesAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Goalkeeper Saves</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.TotalpassesHome, item.TotalpassesAway) value=@Html.DisplayFor(modelItem => item.TotalpassesHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.TotalpassesHome, item.TotalpassesAway) value=@Html.DisplayFor(modelItem => item.TotalpassesAway)></progress>
+    </div>
+
+    <div>
+        <div style="float: left">@Html.DisplayFor(modelItem => item.PassesaccurateHome)</div>
+        <div style="float: right">@Html.DisplayFor(modelItem => item.PassesaccurateAway)</div>
+        <div style="margin: 0 auto; width: 150px;">Goalkeeper Saves</div>
+    </div>
+    <div style="text-align: center;">
+        <progress class="left" max=@numm(item.PassesaccurateHome, item.PassesaccurateAway) value=@Html.DisplayFor(modelItem => item.PassesaccurateHome) style="direction: rtl;"></progress>
+        <progress class="right" max=@numm(item.PassesaccurateHome, item.PassesaccurateAway) value=@Html.DisplayFor(modelItem => item.PassesaccurateAway)></progress>
+    </div>
+}
+

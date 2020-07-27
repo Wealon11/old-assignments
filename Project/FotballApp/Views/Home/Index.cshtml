@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FotballApp.Models.ModelData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<meta http-equiv="Refresh" content="30;" />
+
+<h2 style="text-align: center">Live Football Matches</h2>
+<br/>
+
+@if (Model.Any())
+{
+
+foreach (var item in Model)
+{
+  
+        
+    
+        <table class="table" style="border-top-color: black">
+  
+
+            <td onclick="location.href = '@(Url.Action("Team", "Home", new { teamId = item.HomeTeam_Id }))'">
+                <div class="row">
+                    <div class="col x13" style="text-align: center;">
+                        <img src="@Html.DisplayFor(modelItem => item.HomeTeam_Logo)" width="50" height="50"><br />
+                        @Html.DisplayFor(modelItem => item.HomeTeam_Name)<br />
+                        <h3>@Html.DisplayFor(modelItem => item.GoalsHomeTeam)</h3>
+                    </div>
+                    <div class="col x16" style="text-align: center;">
+                        @Html.DisplayFor(modelItem => item.Elapsed)<br />
+                        @Html.DisplayFor(modelItem => item.StatusShort)<br />
+                    </div>
+                    <div class="col x13" style="text-align: center;">
+                        <img src="@Html.DisplayFor(modelItem => item.AwayTeam_Logo)" width="50" height="50"><br />
+                        @Html.DisplayFor(modelItem => item.AwayTeam_Name)<br />
+                        <h3>@Html.DisplayFor(modelItem => item.GoalsAwayTeam)</h3>
+                    </div>
+
+                </div>
+            </td>
+        </table>
+
+    }
+
+}
+
+else
+{
+        <h6 style="text-align: center">No football matches are currently live</h6>
+}

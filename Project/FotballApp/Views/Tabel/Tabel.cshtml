@@ -1,0 +1,84 @@
+﻿@model IEnumerable<FotballApp.Models.StandingModel>
+
+@{
+    ViewData["Title"] = "Tabel";
+}
+
+
+<h1>@ViewData["LigaName"]</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllMatchsPlayed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllWin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllDraw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllLose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllGoalsFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllGoalsAgainst)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Forme)
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr  onclick="location.href = '@(Url.Action("Team", "Home", new { teamId = item.TeamId }))'">
+            <td>
+                <Span title="@Html.DisplayFor(modelItem => item.Description)">@Html.DisplayFor(modelItem => item.Rank)</Span>
+            </td>
+
+            <td>
+            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="30" height="30">@Html.DisplayFor(modelItem => item.TeamName)
+            <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllMatchsPlayed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllWin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllDraw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllLose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllGoalsFor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllGoalsAgainst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forme)
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>

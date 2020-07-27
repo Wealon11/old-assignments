@@ -1,0 +1,442 @@
+﻿@model IEnumerable<FotballApp.Models.League>
+
+@{
+    ViewData["Title"] = "Tabeller";
+}
+
+
+
+<h2 style="text-align:-moz-center">Football League Tables & Standings</h2>
+<br />
+
+<div class="card-columns" style="background: #ffffff">
+    <div style="text-align: left;">
+
+
+        <h4>England</h4>
+
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "England")
+            {
+                string hhfgd = item.Name;
+
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id"  >
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>France</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "France" && item.Logo != null)
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Germany</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Germany")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Denmark</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Denmark")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+
+        <br>
+        <h4>Brazil</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Brazil")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+
+
+    </div>
+
+
+    <div class="container space-between" style="text-align: -moz-center;">
+        <h4>Italy</h4>
+
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Italy")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Spain</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Spain")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Norway</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Norway")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Wales</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Wales")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Bulgaria</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Bulgaria")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Netherlands</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Netherlands")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+    <br />
+    <div style="text-align: -moz-right;">
+        <h4>Argentina</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Argentina")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Portugal</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Portugal")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+
+        <br>
+        <h4>Japan</h4>
+        @foreach (var item in Model)
+        {
+            if (item.Is_Current == 1 && item.Country == "Japan")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+                    <tr>
+                        <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                        <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </a>
+                    </tr>
+                    </tbody>
+                </table>
+            }
+        }
+
+        <br>
+        <h4>Sweden</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Sweden")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Belgium</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Belgium")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Scotland</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Scotland")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+        <br>
+        <h4>Iceland</h4>
+        @foreach (var item in Model)
+
+        {
+            if (item.Is_Current == 1 && item.Country == "Iceland")
+            {
+                <table style="width: 100%;">
+                    <tbody>
+
+
+                        <tr>
+                            <img src="@Html.DisplayFor(modelItem => item.Logo)" width="25" height="25">
+                            <a class="text-dark" asp-area="" asp-controller="Tabel" asp-action="Tabel" asp-route-leagueId="@item.League_Id">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            }
+        }
+
+
+    </div>
+
+</div>

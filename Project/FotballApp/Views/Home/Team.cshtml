@@ -1,0 +1,198 @@
+﻿@model IEnumerable<FotballApp.Models.TeeamModel>
+
+@{
+    ViewData["Title"] = "Team";
+}
+
+<h4><img src="@ViewData["Logo"]" width="50" height="50"> @ViewData["Name"]</h4>
+<h6><strong>Country: </strong>@ViewData["Country"]</h6>
+<h6><strong>Founded in year: </strong>@ViewData["Founded"]</h6>
+<h6><strong>Venue name: </strong>@ViewData["Venue_name"]</h6><br/>
+
+
+<div class="tab" style="width:800px; margin:0 auto;">
+    <button class="tablinks" onclick="js(event, 'Last match result')"><strong>Last match results for @ViewData["Name"]</strong></button>
+    <button class="tablinks" onclick="js(event, 'Upcoming matches')"><strong>Upcoming matches for @ViewData["Name"]</strong></button>
+
+</div>
+
+<div id="Last match result" class="tabcontent">
+
+
+    <table title="Click for match details" style="width:800px; margin:0 auto;">
+
+        @foreach (var item in Model)
+        {
+            if (item.Event_Date < @DateTime.Now)
+            {
+
+                <div>
+                    <tr onclick="location.href = '@(Url.Action("statisticsR", "Home", new { fixtureidd = item.Fixture_Id }))'">
+
+
+
+                        <td class="teamtd"><strong> @item.Event_Date.ToString("dd.MM.yy")</strong></td>
+                        @if (item.HomeTeamName.Equals(ViewData["Name"]))
+                        {
+                            <td class="teamtd" style="background-color: #FCF1B7"><strong>@Html.DisplayFor(modelItem => item.HomeTeamName)</strong></td>
+                        }
+                        else
+                        {
+                            <td class="teamtd"><strong>@Html.DisplayFor(modelItem => item.HomeTeamName)</strong></td>
+                        }
+
+                        @if (item.AwayTeamName.Equals(ViewData["Name"]))
+                        {
+                            <td class="teamtd" style="background-color: #FCF1B7"><strong>@Html.DisplayFor(modelItem => item.AwayTeamName)</strong></td>
+                        }
+                        else
+                        {
+                            <td class="teamtd"><strong>@Html.DisplayFor(modelItem => item.AwayTeamName)</strong></td>
+                        }
+
+
+                        <td class="teamtd"><strong>@Html.DisplayFor(modelItem => item.Score)</strong></td>
+
+                        @if (item.HomeTeamName.Equals(ViewData["Name"]))
+                        {
+                            if (item.GoalsHomeTeam > item.GoalsAwayTeam)
+                            {
+                                <td class="teamtd" style="background: green">
+                                    <strong>W</strong>
+                                </td>
+                            }
+
+                            else if (item.GoalsHomeTeam == item.GoalsAwayTeam)
+                            {
+                                <td class="teamtd" style="background: yellow">
+                                    <strong>D</strong>
+                                </td>
+                            }
+
+                            else
+                            {
+                                <td class="teamtd" style="background: red">
+                                    <strong class="L">L</strong>
+                                </td>
+                            }
+
+                        }
+
+                        else
+                        {
+                            if (!item.HomeTeamName.Equals(ViewData["Name"]))
+                            {
+                                if (item.GoalsHomeTeam > item.GoalsAwayTeam)
+                                {
+                                    <td class="teamtd" style="background: red">
+                                        <strong class="L">L</strong>
+                                    </td>
+                                }
+
+                                else if (item.GoalsHomeTeam == item.GoalsAwayTeam)
+                                {
+                                    <td class="teamtd" style="background: yellow">
+                                        <strong class="D">D</strong>
+                                    </td>
+                                }
+
+                                else
+                                {
+                                    <td class="teamtd" style="background: green">
+                                        <strong class="w">W</strong>
+                                    </td>
+                                }
+
+                            }
+                        }
+
+
+
+
+
+
+                    </tr>
+                </div>
+
+
+
+
+
+            }
+
+
+
+
+        }
+
+    </table>
+</div>
+
+<div id="Upcoming matches" class="tabcontent">
+    <table style="width:800px; margin:0 auto;">
+
+        @foreach (var item in Model)
+        {
+            if (item.Event_Date > @DateTime.Now)
+            {
+
+                <div>
+                    <tr>
+
+
+                        <td class="teamtd"><strong> @item.Event_Date.ToString("dd.MM.yy")</strong></td>
+                        @if (item.HomeTeamName.Equals(ViewData["Name"]))
+                        {
+                            <td class="teamtd" style="background-color: #FCF1B7"><strong>@Html.DisplayFor(modelItem => item.HomeTeamName)</strong></td>
+                        }
+                        else
+                        {
+                            <td class="teamtd"><strong>@Html.DisplayFor(modelItem => item.HomeTeamName)</strong></td>
+                        }
+
+                        @if (item.AwayTeamName.Equals(ViewData["Name"]))
+                        {
+                            <td class="teamtd" style="background-color: #FCF1B7"><strong>@Html.DisplayFor(modelItem => item.AwayTeamName)</strong></td>
+                        }
+                        else
+                        {
+                            <td class="teamtd"><strong>@Html.DisplayFor(modelItem => item.AwayTeamName)</strong></td>
+                        }
+
+
+                </div>
+
+
+
+
+
+            }
+
+
+
+
+        }
+
+    </table>
+
+
+
+</div>
+
+
+
+<script>
+    function js(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
